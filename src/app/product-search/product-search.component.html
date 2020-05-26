@@ -1,0 +1,54 @@
+<div class="container">
+  <mat-card class="mat-card">
+    <form (submit)="submit()" [formGroup]="loginForm" class="search-container">
+      <div class="search-div">
+        <mat-form-field appearance="fill" class="search-field">
+          <mat-label>Search</mat-label>
+          <input formControlName="search" matInput>
+          <mat-error *ngIf="loginForm.controls.search.touched && loginForm.controls.search.invalid">
+            This field is mandatory.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="search-button-div">
+        <button [disabled]="!loginForm.valid" color="primary" mat-flat-button type="submit">Search</button>
+      </div>
+    </form>
+
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <table [dataSource]="products" mat-table>
+      <ng-container matColumnDef="imageUrl">
+        <mat-header-cell *matHeaderCellDef> Image</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <img class="image" image src="assets\image\{{element.imageUrl}}"></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.description }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.price }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </table>
+    <div>
+      <mat-paginator [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+    </div>
+    <div>
+      <button (click)="indexing()" color="primary" mat-raised-button> Indexing</button>
+    </div>
+    <div *ngIf="index">
+      Products has indexed successfully.
+    </div>
+  </mat-card>
+</div>

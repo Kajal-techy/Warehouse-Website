@@ -1,0 +1,51 @@
+table {
+    width: 100%;
+}
+
+.image {
+    width: 75%;
+    padding: 5%;
+}
+
+.container {
+    padding: 10%;
+    min-width: 700px;
+}
+
+.mat-column-name {
+    flex: 0 0 15% !important;
+}
+
+.mat-column-description {
+    flex: 0 0 50% !important;
+}
+
+.mat-column-imageUrl {
+    flex: 0 0 25% !important;
+}
+
+.mat-column-price {
+    flex: 0 0 10% !important;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-div {
+    width: 50%;
+}
+
+.search-field {
+    width: 100%;
+}
+
+.search-button-div {
+    padding-left: 30px;
+}
+
+mat-header-cell {
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
